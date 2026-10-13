@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game Suit</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background: linear-gradient(135deg, #1e3a8a, #7c3aed);
+            padding: 40px;
+        }
+
+        .kotak {
+            background-color: white;
+            width: 500px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #4f46e5;
+        }
+
+        h2 {
+            color: #374151;
+        }
+
+        p {
+            color: #6b7280;
+        }
+
+        button {
+            background-color: #4f46e5;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            margin: 6px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3730a3;
+        }
+
+        .game {
+            display: none;
+        }
+
+        .hasil {
+            background-color: #eef2ff;
+            color: #312e81;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 10px;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .kembali {
+            background-color: #ef4444;
+        }
+
+        .kembali:hover {
+            background-color: #b91c1c;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="kotak">
+
+    <!-- MENU -->
+    <div id="menu">
+
+        <h1>🎮 GAME SUIT</h1>
+
+        <p>Pilih permainan:</p>
+
+        <button onclick="pilihGame(1)">
+            ✊ Batu Gunting Kertas
+        </button>
+
+        <button onclick="pilihGame(2)">
+            🐘 Gajah Semut Orang
+        </button>
+
+        <button onclick="pilihGame(3)">
+            👍 Jempol Telunjuk Kelingking
+        </button>
+
+    </div>
+
+
+    <!-- GAME 1 -->
+    <div id="game1" class="game">
+
+        <h2>✊ Batu Gunting Kertas</h2>
+
+        <button onclick="main1('Batu')">✊ Batu</button>
+        <button onclick="main1('Gunting')">✌️ Gunting</button>
+        <button onclick="main1('Kertas')">✋ Kertas</button>
+
+        <div id="hasil1" class="hasil">
+            Pilih salah satu!
+        </div>
+
+        <button class="kembali" onclick="kembali()">
+            ⬅️ Kembali
+        </button>
+
+    </div>
+
+
+    <!-- GAME 2 -->
+    <div id="game2" class="game">
+
+        <h2>🐘 Gajah Semut Orang</h2>
+
+        <button onclick="main2('Gajah')">🐘 Gajah</button>
+        <button onclick="main2('Semut')">🐜 Semut</button>
+        <button onclick="main2('Orang')">👤 Orang</button>
+
+        <div id="hasil2" class="hasil">
+            Pilih salah satu!
+        </div>
+
+        <button class="kembali" onclick="kembali()">
+            ⬅️ Kembali
+        </button>
+
+    </div>
+
+
+    <!-- GAME 3 -->
+    <div id="game3" class="game">
+
+        <h2>👍 Jempol Telunjuk Kelingking</h2>
+
+        <button onclick="main3('Jempol')">👍 Jempol</button>
+        <button onclick="main3('Telunjuk')">☝️ Telunjuk</button>
+        <button onclick="main3('Kelingking')">🤙 Kelingking</button>
+
+        <div id="hasil3" class="hasil">
+            Pilih salah satu!
+        </div>
+
+        <button class="kembali" onclick="kembali()">
+            ⬅️ Kembali
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    // Memilih permainan
+    function pilihGame(nomor) {
+
+        document.getElementById("menu").style.display = "none";
+
+        document.getElementById("game" + nomor).style.display = "block";
+    }
+
+
+    // Kembali ke menu
+    function kembali() {
+
+        document.getElementById("menu").style.display = "block";
+
+        document.getElementById("game1").style.display = "none";
+        document.getElementById("game2").style.display = "none";
+        document.getElementById("game3").style.display = "none";
+    }
+
+
+    // Batu Gunting Kertas
+    function main1(user) {
+
+        let pilihan = ["Batu", "Gunting", "Kertas"];
+
+        let komputer =
+            pilihan[Math.floor(Math.random() * 3)];
+
+        let hasil;
+
+        if (user == komputer) {
+            hasil = "🤝 SERI!";
+        }
+
+        else if (
+            (user == "Batu" && komputer == "Gunting") ||
+            (user == "Gunting" && komputer == "Kertas") ||
+            (user == "Kertas" && komputer == "Batu")
+        ) {
+            hasil = "🎉 KAMU MENANG!";
+        }
+
+        else {
+            hasil = "😢 KAMU KALAH!";
+        }
+
+        document.getElementById("hasil1").innerHTML =
+            "Kamu: " + user +
+            "<br>Komputer: " + komputer +
+            "<br>" + hasil;
+    }
+
+
+    // Gajah Semut Orang
+    function main2(user) {
+
+        let pilihan = ["Gajah", "Semut", "Orang"];
+
+        let komputer =
+            pilihan[Math.floor(Math.random() * 3)];
+
+        let hasil;
+
+        if (user == komputer) {
+            hasil = "🤝 SERI!";
+        }
+
+        else if (
+            (user == "Gajah" && komputer == "Orang") ||
+            (user == "Orang" && komputer == "Semut") ||
+            (user == "Semut" && komputer == "Gajah")
+        ) {
+            hasil = "🎉 KAMU MENANG!";
+        }
+
+        else {
+            hasil = "😢 KAMU KALAH!";
+        }
+
+        document.getElementById("hasil2").innerHTML =
+            "Kamu: " + user +
+            "<br>Komputer: " + komputer +
+            "<br>" + hasil;
+    }
+
+
+    // Jempol Telunjuk Kelingking
+    function main3(user) {
+
+        let pilihan = [
+            "Jempol",
+            "Telunjuk",
+            "Kelingking"
+        ];
+
+        let komputer =
+            pilihan[Math.floor(Math.random() * 3)];
+
+        let hasil;
+
+        if (user == komputer) {
+            hasil = "🤝 SERI!";
+        }
+
+        else if (
+            (user == "Jempol" && komputer == "Kelingking") ||
+            (user == "Kelingking" && komputer == "Telunjuk") ||
+            (user == "Telunjuk" && komputer == "Jempol")
+        ) {
+            hasil = "🎉 KAMU MENANG!";
+        }
+
+        else {
+            hasil = "😢 KAMU KALAH!";
+        }
+
+        document.getElementById("hasil3").innerHTML =
+            "Kamu: " + user +
+            "<br>Komputer: " + komputer +
+            "<br>" + hasil;
+    }
+
+</script>
+
+</body>
+</html>
